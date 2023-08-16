@@ -10,8 +10,8 @@ interface Properties{
 const taskInputFeild: React.FC<Properties> = ({todo, setTodo, addTodo}) =>{
     return(
         <form className="input-feild open-task-input-feild" action="" onSubmit={addTodo}>
-            <input value={todo} 
-            onChange={(e)=>setTodo(e.target.value)} className="text-input" type="input" placeholder="Type here..." />
+            <input type="text" value={todo} 
+            onChange={(e)=>setTodo(e.target.value)} className="text-input"  placeholder="Type here..." />
             <input className="text-input-btn" type="submit" value="+" />
         </form>
     )
