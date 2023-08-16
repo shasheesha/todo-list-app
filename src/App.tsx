@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { FormEvent, useState } from 'react';
+import TodoCard from './components/todo-card';
 import OpenInputFeild from './components/task-input-feild';
-import EditIcon from '@mui/icons-material/Edit';
-import DoneIcon from '@mui/icons-material/Done';
-import DeleteIcon from '@mui/icons-material/Delete';
 import './App.css';
+import { Todo } from './models/todo-data';
 
 const App = () => {
+
+  const [todo, setTodo] = useState<string>("");
+  const [todos, setTodos] = useState<Todo[]>([]);
+  const [setTextData] = useState<string>("");
+
+  const addTodo = (e:FormEvent) => {
+    e.preventDefault();
+
+    if(todo){
+      setTodos([...todos,{id: Date.now(), data:todo, status:'open'}]);
+      setTodo("");
+    }
+  }
+
+  console.log(todos);
+
   return (
     <div className="App">
       <div className='header'>
@@ -16,16 +31,12 @@ const App = () => {
         <span className="openTitle title-open">Open</span>
         <div className='openListOuter list-area-outer'>
           <div className='openList list-area'>
-            <OpenInputFeild />
-            <div className='card-area'>
-              <div className='card open-card'>
-                <p>Text_of_list_card</p>
-                <div className='btn-tools'>
-                  <EditIcon />
-                  <DoneIcon />
-                  <DeleteIcon />
-                </div>
-              </div>
+            <OpenInputFeild todo={todo} setTodo={setTodo} addTodo={addTodo}/>
+            <div className='card-area open-card'>
+            
+            {todos.map((t) => (
+              <TodoCard setTextData={t.data} />
+            ))}  
             </div>
           </div>
         </div>
@@ -35,24 +46,9 @@ const App = () => {
         <span className="processTitle title-open">In-Process</span>
         <div className='processListOuter list-area-outer'>
           <div className='processList list-area'>
-            <OpenInputFeild />
-            <div className='card-area'>
-              <div className='card process-card'>
-                <p>Text_of_list_card</p>
-                <div className='btn-tools'>
-                  <div>1</div>
-                  <div>2</div>
-                  <div>3</div>
-                </div>
-              </div>
-              <div className='card process-card'>
-                <p>Text_of_list_card</p>
-                <div className='btn-tools'>
-                  <div>1</div>
-                  <div>2</div>
-                  <div>3</div>
-                </div>
-              </div>
+            {/* <OpenInputFeild /> */}
+            <div className='card-area process-card'>
+            {/* <TodoCard />               */}
             </div>
           </div>
         </div>
@@ -61,16 +57,9 @@ const App = () => {
         <span className="completeTitle title-open">Completed</span>
         <div className='completeListOuter list-area-outer'>
           <div className='completeList list-area'>
-            <OpenInputFeild />
-            <div className='card-area'>
-              <div className='card complete-card'>
-                <p>Text_of_list_card</p>
-                <div className='btn-tools'>
-                  <div>1</div>
-                  <div>2</div>
-                  <div>3</div>
-                </div>
-              </div>
+            {/* <OpenInputFeild /> */}
+            <div className='card-area complete-card'>
+              {/* <TodoCard /> */}
             </div>
           </div>
           </div>

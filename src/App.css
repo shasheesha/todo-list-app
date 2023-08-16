@@ -40,6 +40,11 @@
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 7px;
+  align-items: center;
+  }
+  
+  .card .MuiButtonBase-root {
+    padding: 0px;
 }
 .card .btn-tools{
   display: flex;
@@ -53,25 +58,14 @@
   margin: 0px;
   color: #ffffff;
 }
-.open-card:focus-within{
-  transition: 0.3s;
-  background-color: #218ede;
-}
-.process-card:focus{
-  transition: 0.3s;
-  background-color: #edb12b;
-}
-.complete-card:focus{
-  transition: 0.3s;
-  background-color: #1cc58b;
-}
-.open-card:hover{
+
+.open-card .card:hover{
   border-color: #218ede;
 }
-.process-card:hover{
+.process-card .card:hover{
   border-color: #edb12b;
 }
-.complete-card:hover{
+.complete-card .card:hover{
   border-color: #1cc58b;
 }
 .list-area-outer{
@@ -107,6 +101,8 @@
   width: 100%;
   height: auto;
   margin-top: 0px;
+  display: block;
+  min-width: 400px;
 }
 .openTitle{
   background-color: #218ede;
@@ -116,4 +112,10 @@
 }
 .completeTitle{
   background-color: #1cc58b;
+}
+
+@media(max-width: 1300px){
+  .container{
+    display: block;
+  }
 }
