@@ -1,0 +1,24 @@
+.input-feild{
+    width: auto;
+    background: #181818;
+    border: 1px solid #1f1f1f;
+    border-radius: 3px;
+    display: flex;
+    padding: 5px;
+}
+.text-input{
+    width: 100%;
+    background: transparent;
+    border: 0px solid transparent;
+    color: #ffffff;
+}
+input[type=text]:focus{
+    border: 0px solid transparent;
+}
+.text-input-btn{
+    background: transparent;
+    border: 0px solid transparent;
+    color: #454545;
+    font-size: 20px;
+    cursor: pointer;
+}
