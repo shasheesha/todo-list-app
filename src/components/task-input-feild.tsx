@@ -2,7 +2,7 @@ import React from "react";
 import '../styles/input-feild.css';
 
 interface Properties{
-    todo: String;
+    todo: string;
     setTodo: React.Dispatch<React.SetStateAction<string>>;
     addTodo: (e: React.FormEvent) => void;
 }

@@ -24,7 +24,7 @@ const App = () => {
   return (
     <div className="App">
       <div className='header'>
-        <h2>TO-DO List App</h2>
+        <h2>My To-Do List</h2>
       </div>
       <div className='container'>
         <div className='list-col'>

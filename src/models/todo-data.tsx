@@ -1,5 +1,5 @@
 export interface Todo{
     id:number;
-    data:String;
+    data:string;
     status:string;
 }
