@@ -1,25 +1,46 @@
 import React, { FormEvent, useState } from 'react';
-import TodoCard from './components/todo-card';
 import OpenInputFeild from './components/task-input-feild';
 import './App.css';
 import { Todo } from './models/todo-data';
+import TodoList from './components/todo-list';
 
 const App = () => {
 
-  const [todo, setTodo] = useState<string>("");
-  const [todos, setTodos] = useState<Todo[]>([]);
-  const [setTextData] = useState<string>("");
+  const [openTodo, setOpenTodo] = useState<string>("");
+  const [processTodo, setProcessTodo] = useState<string>("");
+  const [completeTodo, setCompleteTodo] = useState<string>("");
+  const [openTodos, setOpenTodos] = useState<Todo[]>([]);
+  const [processTodos, setProcessTodos] = useState<Todo[]>([]);
+  const [completeTodos, setCompleteTodos] = useState<Todo[]>([]);
 
-  const addTodo = (e:FormEvent) => {
+  const addOpenTodo = (e:FormEvent) => {
     e.preventDefault();
 
-    if(todo){
-      setTodos([...todos,{id: Date.now(), data:todo, status:'open'}]);
-      setTodo("");
+    if(openTodo){
+      setOpenTodos([...openTodos,{id: Date.now(), data:openTodo, status:'open'}]);
+      setOpenTodo("");
     }
   }
 
-  console.log(todos);
+  const addProcessTodo = (e:FormEvent) => {
+    e.preventDefault();
+
+    if(processTodo){
+      setOpenTodos([...openTodos,{id: Date.now(), data:processTodo, status:'process'}]);
+      setProcessTodo("");
+    }
+  }
+
+  const addCompleteTodo = (e:FormEvent) => {
+    e.preventDefault();
+
+    if(completeTodo){
+      setOpenTodos([...openTodos,{id: Date.now(), data:completeTodo, status:'complete'}]);
+      setCompleteTodo("");
+    }
+  }
+
+  console.log(openTodos);
 
   return (
     <div className="App">
@@ -31,12 +52,10 @@ const App = () => {
         <span className="openTitle title-open">Open</span>
         <div className='openListOuter list-area-outer'>
           <div className='openList list-area'>
-            <OpenInputFeild todo={todo} setTodo={setTodo} addTodo={addTodo}/>
+            <OpenInputFeild todo={openTodo} setTodo={setOpenTodo} addTodo={addOpenTodo}/>
             <div className='card-area open-card'>
-            
-            {todos.map((t) => (
-              <TodoCard setTextData={t.data} />
-            ))}  
+              <TodoList todos={openTodos} setTodos={setOpenTodos}  listType="open"/>
+           
             </div>
           </div>
         </div>
@@ -46,9 +65,12 @@ const App = () => {
         <span className="processTitle title-open">In-Process</span>
         <div className='processListOuter list-area-outer'>
           <div className='processList list-area'>
-            {/* <OpenInputFeild /> */}
+          <OpenInputFeild todo={processTodo} setTodo={setProcessTodo} addTodo={addProcessTodo}/>
             <div className='card-area process-card'>
-            {/* <TodoCard />               */}
+              {
+                
+              }
+            <TodoList todos={processTodos} setTodos={setProcessTodos} listType="process"/>
             </div>
           </div>
         </div>
@@ -57,9 +79,9 @@ const App = () => {
         <span className="completeTitle title-open">Completed</span>
         <div className='completeListOuter list-area-outer'>
           <div className='completeList list-area'>
-            {/* <OpenInputFeild /> */}
+          <OpenInputFeild todo={completeTodo} setTodo={setCompleteTodo} addTodo={addCompleteTodo}/>
             <div className='card-area complete-card'>
-              {/* <TodoCard /> */}
+            <TodoList todos={completeTodos} setTodos={setCompleteTodos}  listType="complete"/>
             </div>
           </div>
           </div>
